@@ -41,12 +41,11 @@ export const getLatestAlterationTimestamp = async () => {
 export const getAvailableAlterations = async (
   pool: CommonQueryMethods,
   compareMode: 'gt' | 'lte' = 'gt'
-) => {
+) => {                                                                         
   const databaseTimestamp = await getCurrentDatabaseAlterationTimestamp(pool);
-
   const files = await getAlterationFiles();
 
-  return files.filter(({ filename }) =>
+  return files.filter(({ filename }) => 
     compareMode === 'gt'
       ? getTimestampFromFilename(filename) > databaseTimestamp
       : getTimestampFromFilename(filename) <= databaseTimestamp
