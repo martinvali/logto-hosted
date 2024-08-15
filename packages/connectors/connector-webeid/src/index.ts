@@ -34,7 +34,7 @@ let authCodeRequest: AuthorizationCodeRequest;
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
   async (state, redirectUri) => {
-
+    console.log(state);
     console.log(redirectUri);
 
     return `https://payload-uptime-new.vercel.app/auth/id-card-login?callback=${redirectUri}`;
