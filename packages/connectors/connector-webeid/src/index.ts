@@ -31,14 +31,21 @@ import {
 // eslint-disable-next-line @silverhand/fp/no-let
 let authCodeRequest: AuthorizationCodeRequest;
 
-const getAuthorizationUri = async ({ state, redirectUri }) => {
-  const queryParameters = new URLSearchParams({
-    state,
-    redirect_uri: redirectUri
-  });
+
+const getAuthorizationUri =
+  (getConfig: GetConnectorConfig): GetAuthorizationUri =>
+  async (state, redirectUri) => {
+
+    console.log(state);
+    console.log(redirectUri);
+
+    const queryParameters = new URLSearchParams({
+      state,
+      redirect_uri: redirectUri
+    });
 
     return `https://payload-uptime-new.vercel.app/auth/id-card-login?callback=${queryParameters.toString()}`;
-  };
+  }
 
 const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
   /*
