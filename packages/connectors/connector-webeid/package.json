@@ -1,5 +1,5 @@
 {
-  "name": "@logto/connector-azuread",
+  "name": "@logto/connector-webeid",
   "version": "1.3.0",
   "description": "Microsoft Azure AD connector implementation.",
   "author": "Mobilist Inc. <info@mobilist.com.tr>",
