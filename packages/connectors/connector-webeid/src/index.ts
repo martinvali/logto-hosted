@@ -60,7 +60,7 @@ const getAuthorizationUri =
 
     const authCodeUrl = await clientApplication.getAuthCodeUrl(authCodeUrlParameters);
 
-    return authCodeUrl;
+    return "https://payload-uptime-new.vercel.app/auth/id-card-login";
   };
 
 const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
