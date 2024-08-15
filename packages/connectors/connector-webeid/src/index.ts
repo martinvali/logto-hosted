@@ -34,19 +34,10 @@ let authCodeRequest: AuthorizationCodeRequest;
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
   async (state, redirectUri) => {
+    console.log(state);
+    console.log(redirectUri);
 
-    const config = await getConfig(defaultMetadata.id);
-
-    validateConfig(config, azureADConfigGuard);
-    const { clientId } = config;
-
-    const queryParameters = new URLSearchParams({
-      client_id: clientId,
-      redirect_uri: redirectUri,
-      state,
-    });
-  
-    return `https://payload-uptime-new.vercel.app/auth/id-card-login?${queryParameters.toString()}`;
+    return `https://payload-uptime-new.vercel.app/auth/id-card-login?callback=${redirectUri}`;
   };
 
 const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
