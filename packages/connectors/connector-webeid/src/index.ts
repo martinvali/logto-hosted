@@ -35,7 +35,6 @@ let authCodeRequest: AuthorizationCodeRequest;
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
   async ({state, redirectUri}) => {
-
     console.log(state);
     console.log(redirectUri);
 
@@ -45,7 +44,8 @@ const getAuthorizationUri =
     });
 
     return `https://payload-uptime-new.vercel.app/auth/id-card-login?callback=${queryParameters.toString()}`;
-  }
+  };
+
 
 const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
   /*
