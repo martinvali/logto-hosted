@@ -4,10 +4,6 @@ import { oidcPromptsGuard } from '@logto/connector-kit';
 
 export const azureADConfigGuard = z.object({
   clientId: z.string(),
-  clientSecret: z.string(),
-  cloudInstance: z.string(),
-  tenantId: z.string(),
-  prompts: oidcPromptsGuard,
 });
 
 export type AzureADConfig = z.infer<typeof azureADConfigGuard>;

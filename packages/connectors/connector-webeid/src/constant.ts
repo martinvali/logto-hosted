@@ -17,7 +17,13 @@ export const defaultMetadata: ConnectorMetadata = {
     en: 'Webeid connector',
   },
   readme: './README.md',
-  formItems: [],
+  formItems: [{
+    key: 'clientId',
+    type: ConnectorConfigFormItemType.Text,
+    required: true,
+    label: 'Client ID',
+    placeholder: '<client-id>',
+  }],
 };
 
 export const defaultTimeout = 5000;

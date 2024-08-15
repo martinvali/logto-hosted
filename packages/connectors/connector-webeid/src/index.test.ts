@@ -19,9 +19,6 @@ vi.mock('@azure/msal-node', async () => ({
 
 const getConnectorConfig = vi.fn().mockResolvedValue({
   clientId: 'clientId',
-  clientSecret: 'clientSecret',
-  cloudInstance: 'https://login.microsoftonline.com',
-  tenantId: 'tenantId',
 });
 
 describe('Azure AD connector', () => {
