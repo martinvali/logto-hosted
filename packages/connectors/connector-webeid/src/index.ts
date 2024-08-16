@@ -97,7 +97,7 @@ const getUserInfo =
     console.log("Profile is", profile);
     return {
       id: String(profile.id),
-      username: String(profile.id)
+      name: String(profile.id)
     }
   }
   catch(error) {
