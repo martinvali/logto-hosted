@@ -43,8 +43,6 @@ const getAuthorizationUri =
       redirect_uri: redirectUri
     });
 
-    setSession(state);
-
     return `${API_ENDPOINT}/auth/id-card-login?${queryParameters.toString()}`;
   };
 
