@@ -96,7 +96,8 @@ const getUserInfo =
     const profile = await profileResponse.json();
     console.log("Profile is", profile);
     return {
-      id: profile.id
+      id: String(profile.id),
+      username: String(profile.id)
     }
   }
   catch(error) {
