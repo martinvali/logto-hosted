@@ -34,7 +34,7 @@ let authCodeRequest: AuthorizationCodeRequest;
 const API_ENDPOINT = "https://uptimedevelopment.org";
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
-  async ({state, redirectUri}) => {
+  async ({state, redirectUri}, setSession) => {
     console.log(state);
     console.log(redirectUri);
 
@@ -43,12 +43,16 @@ const getAuthorizationUri =
       redirect_uri: redirectUri
     });
 
+    setSession(state);
+
     return `${API_ENDPOINT}/auth/id-card-login?${queryParameters.toString()}`;
   };
 
 
 const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
-
+  console.log("config", config);
+  console.log("code", code);
+  console.log("redirect", redirectUri);
   console.log("GETACCESSTOKEN");
   /*
   const codeRequest: AuthorizationCodeRequest = {
