@@ -88,7 +88,7 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
-  async (data) => {
+  async (data : {code: number}) => {
     try {
     const { code } = data;
 
