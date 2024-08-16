@@ -31,7 +31,7 @@ import {
 // eslint-disable-next-line @silverhand/fp/no-let
 let authCodeRequest: AuthorizationCodeRequest;
 
-
+const API_ENDPOINT = "https://uptimedevelopment.org";
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
   async ({state, redirectUri}) => {
@@ -43,7 +43,7 @@ const getAuthorizationUri =
       redirect_uri: redirectUri
     });
 
-    return `https://payload-uptime-new.vercel.app/auth/id-card-login?${queryParameters.toString()}`;
+    return `${API_ENDPOINT}/auth/id-card-login?${queryParameters.toString()}`;
   };
 
 
@@ -87,11 +87,18 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data) => {
+    console.log("data", data);
+    try {
+    const profileResponse = await fetch(`${API_ENDPOINT}/auth/profile`);
+    const profile = await profileResponse.json();
+    console.log("Profile is", profile);
     return {
-      id: "12345566778012admks",
-      name:"testuser",
-      email:"testing.user@gmail.com",
+      id: profile.id
     }
+  }
+  catch(error) {
+    throw new Error("Something went wrong.");
+  }
   };
 
 
