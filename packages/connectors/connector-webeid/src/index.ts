@@ -87,60 +87,13 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data) => {
-    const { code, redirectUri } = await authorizationCallbackHandler(data);
-
-    // Temporarily keep this as this is a refactor, which should not change the logics.
-    const config = await getConfig(defaultMetadata.id);
-    validateConfig(config, azureADConfigGuard);
-
-    const { accessToken } = await getAccessToken(config, code, redirectUri);
-
-    try {
-      const httpResponse = await got.get(graphAPIEndpoint, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
-        timeout: { request: defaultTimeout },
-      });
-      const rawData = parseJson(httpResponse.body);
-      const result = userInfoResponseGuard.safeParse(rawData);
-
-      if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
-      }
-
-      const { id, mail, displayName } = result.data;
-
-      return {
-        id,
-        email: conditional(mail),
-        name: conditional(displayName),
-        rawData,
-      };
-    } catch (error: unknown) {
-      if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
-
-        if (statusCode === 401) {
-          throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-        }
-
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
-      }
-
-      throw error;
+    return {
+      id: "12345566778012admks",
+      name:"testuser",
+      email:"testing.user@gmail.com",
     }
   };
 
-const authorizationCallbackHandler = async (parameterObject: unknown) => {
-  const result = authResponseGuard.safeParse(parameterObject);
-
-  if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(parameterObject));
-  }
-
-  return result.data;
-};
 
 const createAzureAdConnector: CreateConnector<SocialConnector> = async ({ getConfig }) => {
   return {
