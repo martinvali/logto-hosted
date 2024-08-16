@@ -97,7 +97,8 @@ const getUserInfo =
     console.log("Profile is", profile);
     return {
       id: String(profile.id),
-      name: String(profile.id)
+      name: String(profile.id),
+      email: "test@gmail.com"
     }
   }
   catch(error) {
