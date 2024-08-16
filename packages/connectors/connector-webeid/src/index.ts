@@ -89,9 +89,10 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data) => {
-    console.log("data", data);
     try {
-    const profileResponse = await fetch(`${API_ENDPOINT}/auth/profile`);
+    const { code } = data;
+
+    const profileResponse = await fetch(`${API_ENDPOINT}/auth/profile?session=${code}`);
     const profile = await profileResponse.json();
     console.log("Profile is", profile);
     return {
