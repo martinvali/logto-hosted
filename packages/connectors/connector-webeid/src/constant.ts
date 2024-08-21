@@ -11,7 +11,7 @@ export const defaultMetadata: ConnectorMetadata = {
   name: {
     en: 'WebeID',
   },
-  logo: './logo.svg',
+  logo: './logo.png',
   logoDark: null,
   description: {
     en: 'Webeid connector',
