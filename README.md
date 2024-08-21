@@ -20,6 +20,10 @@
 
 Logto[^info] is an Auth0 alternative designed for modern apps and SaaS products. It offers a seamless developer experience and is well-suited for individuals and growing companies.
 
+🧑‍💻 **To Build connectors on Linux system, does not support WSL**
+pnpm i && pnpm prepack
+pnpm connectors build
+
 🧑‍💻 **Comprehensive frontend-to-backend identity solution**
 
 - Enables OIDC-based authentication with Logto SDKs.
@@ -42,7 +46,6 @@ Logto[^info] is an Auth0 alternative designed for modern apps and SaaS products.
 In a more approachable way, we refer to this solution as "[Customer Identity Access Management (CIAM)](https://en.wikipedia.org/wiki/Customer_identity_access_management)" or simply, the "Customer Identity Solution."
 
 [Subscribe to us](https://logto.io/subscribe/?utm_source=github&utm_medium=repo_logto) now to stay updated with the latest information about the Logto Cloud (SaaS) and receive feature updates in real-time.
-
 
 ## Get started
 
@@ -77,7 +80,21 @@ npm init @logto
 ## Language support
 
 ```ts
-const languages = ['Deutsch', 'English', 'Español', 'Français', 'Italiano', '日本語', '한국어', 'Polski', 'Português', 'Русский', 'Türkçe', '简体中文', '繁體中文'];
+const languages = [
+  "Deutsch",
+  "English",
+  "Español",
+  "Français",
+  "Italiano",
+  "日本語",
+  "한국어",
+  "Polski",
+  "Português",
+  "Русский",
+  "Türkçe",
+  "简体中文",
+  "繁體中文",
+];
 ```
 
 ## Web compatibility
